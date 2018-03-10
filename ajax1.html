@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ajax</title>
+
+	<script type="text/javascript">
+
+	function stuff()
+{
+	//XMLHttpRequest is an object whose methods are used to transfer data  btw d web browser n web server
+	var ajax= new XMLHttpRequest();
+	//open method, says i) u r posting or geting, then to wat page, den dat asynchronous transfer is true 
+	ajax.open("POST","ajax2.php",true);
+	//setRequestHeader used to add a label/value to the header to be sent
+	ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	//onreadystatechange is the property of object XMLHttpRequest that defines a function to be called when the ready state property changes
+	ajax.onreadystatechange = function()
+	{
+	//readystate property :it holds the status of the object ,there are 5 states counting from 0-4 unsent, opened, headers recieved, loading, done
+	//status returns the number of a request whwere 200 is ok, 403 is forbidden, 404 is not found
+		if(ajax.readyState ==4 && ajax.status==200)
+		{	//responseText returns the response data as a string
+			document.write(ajax.responseText);
+		}
+	}
+	ajax.send(null);
+}
+	</script>
+</head>
+<body>
+<button onclick="stuff()">submit</button>
+</body>
+</html>
